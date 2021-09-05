@@ -34,12 +34,12 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_day_text"
             style="@style/subtitle_2"
+            formatDate="@{listItem.dt}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/medium_margin"
             android:layout_marginTop="@dimen/medium_margin"
             android:layout_marginBottom="@dimen/extra_small_margin"
-            android:text="@{listItem.dt.toString()}"
             app:layout_constraintBottom_toTopOf="@id/item_condition_text"
             app:layout_constraintStart_toEndOf="@id/item_icon"
             app:layout_constraintTop_toTopOf="parent"

@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.sunshine.R
 import com.example.sunshine.model.ListItem
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun <T : ViewDataBinding> ViewGroup.bind(layoutId: Int, attachToParent: Boolean = false): T =
     DataBindingUtil.inflate(LayoutInflater.from(context), layoutId, this, attachToParent)
@@ -32,8 +34,8 @@ fun loadIcon(view: View, id: String?) {
             "10d", "13d" -> R.drawable.weather_rainy_2
             "50d", "01d" -> R.drawable.weather_sunny
             "01n" -> R.drawable.weather_moon
-            "02d" -> R.drawable.weather_cloudy
-            "02n" -> R.drawable.weather_cloudy_night
+            "02d", "03d", "04d" -> R.drawable.weather_cloudy
+            "02n", "03n", "04n" -> R.drawable.weather_cloudy_night
             else -> R.drawable.weather_sunny
         }
     )
@@ -59,5 +61,13 @@ fun buildWindString(view: TextView, listItem: ListItem) {
     val direction =  arr[(sector % 16)]
     val wind = view.context.getString(R.string.wind)
     val result ="$wind: ${listItem.speed} km/h $direction"
+    view.text = result
+}
+
+@BindingAdapter("formatDate")
+fun formatDate(view: TextView, dt: Int) {
+    val sdf = SimpleDateFormat("E", Locale.US)
+    val date = Date(dt.toLong()*1000)
+    val result = sdf.format(date)
     view.text = result
 }
