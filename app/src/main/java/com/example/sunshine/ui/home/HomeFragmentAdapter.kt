@@ -1,13 +1,12 @@
 package com.example.sunshine.ui.home
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sunshine.R
 import com.example.sunshine.databinding.HomeListItemBinding
 import com.example.sunshine.model.ListItem
 import com.example.sunshine.utils.bind
-import com.example.sunshine.utils.setAuxiliaryTextVisibility
+import com.example.sunshine.utils.setAuxiliaryViewVisibility
 
 class HomeFragmentAdapter : RecyclerView.Adapter<HomeFragmentAdapter.HomeFragmentViewHolder>() {
 
@@ -19,10 +18,11 @@ class HomeFragmentAdapter : RecyclerView.Adapter<HomeFragmentAdapter.HomeFragmen
     override fun onBindViewHolder(holder: HomeFragmentViewHolder, position: Int) {
         val weatherItem = weatherList[position]
         holder.binding.listItem = weatherItem
+        holder.binding.weatherItem = weatherItem.weather?.firstOrNull()
         holder.binding.rootView.setOnClickListener {
-            holder.binding.itemHumidityText.setAuxiliaryTextVisibility()
-            holder.binding.itemPressureText.setAuxiliaryTextVisibility()
-            holder.binding.itemWindText.setAuxiliaryTextVisibility()
+            holder.binding.itemHumidityText.setAuxiliaryViewVisibility()
+            holder.binding.itemPressureText.setAuxiliaryViewVisibility()
+            holder.binding.itemWindText.setAuxiliaryViewVisibility()
         }
     }
 

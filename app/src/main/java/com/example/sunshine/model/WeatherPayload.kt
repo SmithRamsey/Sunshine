@@ -52,7 +52,7 @@ data class ListItem(
 	val deg: Int? = null,
 	val pressure: Int? = null,
 	val clouds: Int? = null,
-	val feelsLike: FeelsLike? = null,
+	val feels_like: FeelsLike? = null,
 	val speed: Double? = null,
 	val dt: Int? = null,
 	val pop: Double? = null,

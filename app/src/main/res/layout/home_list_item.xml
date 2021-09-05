@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="listItem"
             type="com.example.sunshine.model.ListItem" />
+        <variable
+            name="weatherItem"
+            type="com.example.sunshine.model.WeatherItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +28,7 @@
             app:layout_constraintEnd_toStartOf="@id/item_day_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/item_day_text"
+            loadIcon="@{weatherItem.icon}"
             tools:src="@drawable/weather_cloudy" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -49,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/extra_small_margin"
             android:layout_marginBottom="@dimen/small_margin"
-            android:text="@{listItem.weather.get(0).main}"
+            android:text="@{weatherItem.main}"
             app:layout_constraintBottom_toTopOf="@id/item_humidity_text"
             app:layout_constraintStart_toStartOf="@id/item_day_text"
             app:layout_constraintTop_toBottomOf="@id/item_day_text"
@@ -58,10 +61,10 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_high_temp_text"
             style="@style/body_3"
+            roundTemp="@{listItem.temp.max}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_margin"
-            android:text="@{listItem.temp.max.toString()}"
             app:layout_constraintBottom_toBottomOf="@id/item_day_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/item_day_text"
@@ -70,9 +73,9 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_low_temp_text"
             style="@style/body_2"
+            roundTemp="@{listItem.temp.min}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{listItem.temp.min.toString()}"
             app:layout_constraintBottom_toBottomOf="@id/item_condition_text"
             app:layout_constraintEnd_toEndOf="@id/item_high_temp_text"
             app:layout_constraintTop_toTopOf="@id/item_condition_text"
@@ -85,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
             android:layout_marginBottom="@dimen/extra_small_margin"
-            android:text="@{listItem.humidity.toString()}"
+            android:text="@{@string/humidity+`: `+listItem.humidity.toString()+ `%`}"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/item_pressure_text"
             app:layout_constraintStart_toStartOf="@id/item_condition_text"
@@ -99,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/extra_small_margin"
             android:layout_marginBottom="@dimen/extra_small_margin"
-            android:text="@{listItem.pressure.toString()}"
+            android:text="@{@string/pressure+`: ` +listItem.pressure.toString()+` hPa`}"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/item_wind_text"
             app:layout_constraintStart_toStartOf="@id/item_condition_text"
@@ -109,11 +112,11 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_wind_text"
             style="@style/body_2"
+            buildWindString="@{listItem}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/extra_small_margin"
             android:layout_marginBottom="@dimen/small_margin"
-            android:text="@{listItem.speed.toString()}"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/item_condition_text"
