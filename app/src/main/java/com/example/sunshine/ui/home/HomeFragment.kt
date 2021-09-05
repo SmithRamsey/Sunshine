@@ -20,6 +20,11 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        homeViewModel.getWeather()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,7 +35,7 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
-
+            _binding?.locationText?.text = it
         })
         return root
     }
@@ -38,5 +43,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        homeViewModel.onDestroy()
     }
 }

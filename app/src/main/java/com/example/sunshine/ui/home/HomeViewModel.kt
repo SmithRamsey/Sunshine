@@ -1,5 +1,6 @@
 package com.example.sunshine.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,36 +9,48 @@ import com.example.sunshine.model.WeatherPayload
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+
 
 class HomeViewModel : ViewModel() {
 
 
-    private lateinit var weatherRepository: WeatherRepository
-
-    suspend fun getWeather() {
-        weatherRepository.getWeatherPayload().subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-            .subscribe(object : Observer<WeatherPayload> {
-                override fun onSubscribe(d: Disposable?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onNext(value: WeatherPayload?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onError(e: Throwable?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onComplete() {
-                    TODO("Not yet implemented")
-                }
-            })
-    }
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
+    private val weatherRepository by lazy { WeatherRepository.getInstance() }
+    private val homeViewModelJob = Job()
+    private val homViewModelCoroutine = CoroutineScope(Dispatchers.Default + homeViewModelJob)
+    private val _text = MutableLiveData<String>()
     val text: LiveData<String> = _text
+
+    fun getWeather() {
+        homViewModelCoroutine.launch {
+            weatherRepository.getWeatherPayload().subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(object : Observer<WeatherPayload> {
+                    override fun onSubscribe(d: Disposable?) {
+
+                    }
+
+                    override fun onNext(value: WeatherPayload?) {
+                        _text.postValue(value?.city?.name ?: "")
+
+                        Log.d("testing", "onNext: $value")
+                    }
+
+                    override fun onError(e: Throwable?) {
+                        Log.d("testing", "onError: $e")
+                    }
+
+                    override fun onComplete() {
+
+                    }
+                })
+        }
+    }
+
+    fun onDestroy() {
+        homeViewModelJob.cancel()
+    }
 }

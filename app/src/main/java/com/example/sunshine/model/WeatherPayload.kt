@@ -55,7 +55,7 @@ data class ListItem(
 	val feelsLike: FeelsLike? = null,
 	val speed: Double? = null,
 	val dt: Int? = null,
-	val pop: Int? = null,
+	val pop: Double? = null,
 	val sunset: Int? = null,
 	val weather: List<WeatherItem?>? = null,
 	val humidity: Int? = null,

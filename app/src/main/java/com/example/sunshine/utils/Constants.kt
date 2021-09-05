@@ -7,7 +7,8 @@ object Constants {
 
 
     // WeatherService.kt constants
-    const val BASE_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?"
+    const val BASE_URL = "https://api.openweathermap.org/"
+    const val PATH = "data/2.5/forecast/daily?"
 
     // Default WeatherService Parameters
     const val DEFAULT_CITY = "Atlanta"

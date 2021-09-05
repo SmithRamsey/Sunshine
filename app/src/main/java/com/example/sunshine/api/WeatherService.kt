@@ -10,6 +10,7 @@ import com.example.sunshine.utils.Constants.FIVE
 import com.example.sunshine.utils.Constants.IMPERIAL
 import com.example.sunshine.utils.Constants.JSON
 import com.example.sunshine.utils.Constants.MODE
+import com.example.sunshine.utils.Constants.PATH
 import com.example.sunshine.utils.Constants.Q
 import com.example.sunshine.utils.Constants.UNITS
 import io.reactivex.Observable
@@ -21,7 +22,7 @@ import retrofit2.http.Query
 
 interface WeatherService {
 
-    @GET
+    @GET(PATH)
     fun getWeather(
         @Query(Q) q: String = DEFAULT_CITY,
         @Query(MODE) mode: String = JSON,
