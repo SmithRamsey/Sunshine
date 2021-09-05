@@ -6,4 +6,5 @@
     <string name="nav_header_subtitle">Created by Ramsey Smith \nSmith.S.Ramsey@Gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="menu_home">SUNSHINE</string>
+    <string name="ten_day_forecast">10-Day Forecast</string>
 </resources>

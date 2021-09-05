@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, _, _ ->
-            binding.appBarMain.toolbar.setTitleTextAppearance(applicationContext, R.style.Title_1)
+            binding.appBarMain.toolbar.setTitleTextAppearance(applicationContext, R.style.Theme_Sunshine_ActionBar)
             binding.appBarMain.toolbar.setNavigationIcon(R.drawable.menu)
         }
     }
