@@ -1,107 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/small_margin"
-    android:paddingTop="@dimen/medium_margin">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="@dimen/medium_margin"
-        app:layout_constraintBottom_toBottomOf="@id/item_condition_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/item_day_text"
-        app:layout_constraintEnd_toStartOf="@id/item_day_text"
-        tools:src="@drawable/weather_cloudy" />
+    <data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_day_text"
-        style="@style/subtitle_2"
-        android:layout_width="wrap_content"
+        <variable
+            name="listItem"
+            type="com.example.sunshine.model.ListItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/extra_small_margin"
-        android:layout_marginTop="@dimen/medium_margin"
-        android:layout_marginStart="@dimen/medium_margin"
-        app:layout_constraintBottom_toTopOf="@id/item_condition_text"
-        app:layout_constraintStart_toEndOf="@id/item_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Saturday" />
+        android:paddingTop="@dimen/medium_margin"
+        android:paddingBottom="@dimen/small_margin">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_condition_text"
-        style="@style/body_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/extra_small_margin"
-        android:layout_marginBottom="@dimen/small_margin"
-        app:layout_constraintBottom_toTopOf="@id/item_humidity_text"
-        app:layout_constraintStart_toStartOf="@id/item_day_text"
-        app:layout_constraintTop_toBottomOf="@id/item_day_text"
-        tools:text="Cloudy" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/medium_margin"
+            app:layout_constraintBottom_toBottomOf="@id/item_condition_text"
+            app:layout_constraintEnd_toStartOf="@id/item_day_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_day_text"
+            tools:src="@drawable/weather_cloudy" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_high_temp_text"
-        style="@style/body_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/medium_margin"
-        app:layout_constraintBottom_toBottomOf="@id/item_day_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/item_day_text"
-        tools:text="77°" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_day_text"
+            style="@style/subtitle_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginBottom="@dimen/extra_small_margin"
+            android:text="@{listItem.dt.toString()}"
+            app:layout_constraintBottom_toTopOf="@id/item_condition_text"
+            app:layout_constraintStart_toEndOf="@id/item_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Saturday" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_low_temp_text"
-        style="@style/body_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/item_high_temp_text"
-        app:layout_constraintTop_toTopOf="@id/item_condition_text"
-        app:layout_constraintBottom_toBottomOf="@id/item_condition_text"
-        tools:text="56°" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_condition_text"
+            style="@style/body_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/extra_small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:text="@{listItem.weather.get(0).main}"
+            app:layout_constraintBottom_toTopOf="@id/item_humidity_text"
+            app:layout_constraintStart_toStartOf="@id/item_day_text"
+            app:layout_constraintTop_toBottomOf="@id/item_day_text"
+            tools:text="Cloudy" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_humidity_text"
-        style="@style/body_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginBottom="@dimen/extra_small_margin"
-        app:layout_constraintBottom_toTopOf="@id/item_pressure_text"
-        app:layout_constraintStart_toStartOf="@id/item_condition_text"
-        app:layout_constraintTop_toBottomOf="@id/item_condition_text"
-        android:visibility="gone"
-        tools:text="Humidity: 81%" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_high_temp_text"
+            style="@style/body_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:text="@{listItem.temp.max.toString()}"
+            app:layout_constraintBottom_toBottomOf="@id/item_day_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_day_text"
+            tools:text="77°" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_pressure_text"
-        style="@style/body_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/extra_small_margin"
-        android:layout_marginBottom="@dimen/extra_small_margin"
-        app:layout_constraintBottom_toTopOf="@id/item_wind_text"
-        app:layout_constraintStart_toStartOf="@id/item_condition_text"
-        app:layout_constraintTop_toBottomOf="@id/item_humidity_text"
-        android:visibility="gone"
-        tools:text="Pressure: 1017 hPa" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_low_temp_text"
+            style="@style/body_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{listItem.temp.min.toString()}"
+            app:layout_constraintBottom_toBottomOf="@id/item_condition_text"
+            app:layout_constraintEnd_toEndOf="@id/item_high_temp_text"
+            app:layout_constraintTop_toTopOf="@id/item_condition_text"
+            tools:text="56°" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_wind_text"
-        style="@style/body_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/extra_small_margin"
-        android:layout_marginBottom="@dimen/small_margin"
-        app:layout_constraintStart_toStartOf="@id/item_condition_text"
-        app:layout_constraintTop_toBottomOf="@id/item_pressure_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone"
-        tools:text="Wind: 2km/h NW" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_humidity_text"
+            style="@style/body_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/extra_small_margin"
+            android:text="@{listItem.humidity.toString()}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/item_pressure_text"
+            app:layout_constraintStart_toStartOf="@id/item_condition_text"
+            app:layout_constraintTop_toBottomOf="@id/item_condition_text"
+            tools:text="Humidity: 81%" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_pressure_text"
+            style="@style/body_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/extra_small_margin"
+            android:layout_marginBottom="@dimen/extra_small_margin"
+            android:text="@{listItem.pressure.toString()}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/item_wind_text"
+            app:layout_constraintStart_toStartOf="@id/item_condition_text"
+            app:layout_constraintTop_toBottomOf="@id/item_humidity_text"
+            tools:text="Pressure: 1017 hPa" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_wind_text"
+            style="@style/body_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/extra_small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:text="@{listItem.speed.toString()}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/item_condition_text"
+            app:layout_constraintTop_toBottomOf="@id/item_pressure_text"
+            tools:text="Wind: 2km/h NW" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

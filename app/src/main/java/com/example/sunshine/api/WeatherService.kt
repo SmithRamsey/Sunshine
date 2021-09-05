@@ -12,6 +12,7 @@ import com.example.sunshine.utils.Constants.JSON
 import com.example.sunshine.utils.Constants.MODE
 import com.example.sunshine.utils.Constants.PATH
 import com.example.sunshine.utils.Constants.Q
+import com.example.sunshine.utils.Constants.TEN
 import com.example.sunshine.utils.Constants.UNITS
 import io.reactivex.Observable
 import retrofit2.Retrofit
@@ -26,7 +27,7 @@ interface WeatherService {
     fun getWeather(
         @Query(Q) q: String = DEFAULT_CITY,
         @Query(MODE) mode: String = JSON,
-        @Query(CNT) sortBy: Int = FIVE,
+        @Query(CNT) sortBy: Int = TEN,
         @Query(UNITS) units: String = IMPERIAL,
         @Query(API_KEY_QUERY_VALUE) apiKey: String = API_KEY
     ): Observable<WeatherPayload>

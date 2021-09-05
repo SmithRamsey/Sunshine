@@ -17,12 +17,11 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
-
     private val weatherRepository by lazy { WeatherRepository.getInstance() }
     private val homeViewModelJob = Job()
     private val homViewModelCoroutine = CoroutineScope(Dispatchers.Default + homeViewModelJob)
-    private val _text = MutableLiveData<String>()
-    val text: LiveData<String> = _text
+    private val _weatherPayload = MutableLiveData<WeatherPayload>()
+    val weatherPayload: LiveData<WeatherPayload> = _weatherPayload
 
     fun getWeather() {
         homViewModelCoroutine.launch {
@@ -34,8 +33,9 @@ class HomeViewModel : ViewModel() {
                     }
 
                     override fun onNext(value: WeatherPayload?) {
-                        _text.postValue(value?.city?.name ?: "")
-
+                        value?.let {
+                            _weatherPayload.postValue(it)
+                        }
                         Log.d("testing", "onNext: $value")
                     }
 

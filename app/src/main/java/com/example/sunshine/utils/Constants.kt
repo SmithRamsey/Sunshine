@@ -4,7 +4,7 @@ object Constants {
 
     // Integers
     const val FIVE = 5
-
+    const val TEN = 10
 
     // WeatherService.kt constants
     const val BASE_URL = "https://api.openweathermap.org/"

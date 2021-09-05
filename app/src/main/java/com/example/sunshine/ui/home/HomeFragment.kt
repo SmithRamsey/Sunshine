@@ -5,14 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sunshine.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private val homeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
+    }
+    private val homeFragmentAdapter by lazy {
+        HomeFragmentAdapter()
     }
     private var _binding: FragmentHomeBinding? = null
 
@@ -34,8 +37,15 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            _binding?.locationText?.text = it
+        binding.rvHome.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = homeFragmentAdapter
+        }
+        homeViewModel.weatherPayload.observe(viewLifecycleOwner, { payLoad ->
+            binding.locationText.text = payLoad.city?.name
+            payLoad.list?.filterNotNull()?.let { weatherList ->
+                homeFragmentAdapter.weatherList = weatherList
+            }
         })
         return root
     }
