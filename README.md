@@ -1,5 +1,4 @@
 # Sunshine
- Weather App
 
 Welcome to the Sunshine App!
 
