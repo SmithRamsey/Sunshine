@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.sunshine.R
 import com.example.sunshine.model.ListItem
+import com.example.sunshine.utils.Constants.ONE_THOUSAND
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -67,7 +68,7 @@ fun buildWindString(view: TextView, listItem: ListItem) {
 @BindingAdapter("formatDate")
 fun formatDate(view: TextView, dt: Int) {
     val sdf = SimpleDateFormat("EEEE", Locale.US)
-    val date = Date(dt.toLong() * 1000)
+    val date = Date(dt.toLong() * ONE_THOUSAND)
     val result = sdf.format(date)
     view.text = result
 }

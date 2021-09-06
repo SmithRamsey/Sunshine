@@ -3,8 +3,8 @@ package com.example.sunshine.utils
 object Constants {
 
     // Integers
-
     const val TEN = 10
+    const val ONE_THOUSAND = 1000
 
     // WeatherService.kt constants
     const val BASE_URL = "https://api.openweathermap.org/"
