@@ -6,6 +6,9 @@ object Constants {
     const val TEN = 10
     const val ONE_THOUSAND = 1000
 
+    // Location
+    const val PERMISSIONS_REQUEST_CODE = 647
+
     // WeatherService.kt constants
     const val BASE_URL = "https://api.openweathermap.org/"
     const val PATH = "data/2.5/forecast/daily?"
@@ -17,10 +20,11 @@ object Constants {
     const val API_KEY = "3aa158b2f14a9f493a8c725f8133d704"
 
     // WeatherService Query Values
+    const val LAT = "lat"
+    const val LONG = "lon"
     const val Q = "q"
     const val MODE = "mode"
     const val CNT = "cnt"
     const val UNITS = "units"
     const val API_KEY_QUERY_VALUE = "apikey"
-
 }

@@ -8,6 +8,8 @@ import com.example.sunshine.utils.Constants.CNT
 import com.example.sunshine.utils.Constants.DEFAULT_CITY
 import com.example.sunshine.utils.Constants.IMPERIAL
 import com.example.sunshine.utils.Constants.JSON
+import com.example.sunshine.utils.Constants.LAT
+import com.example.sunshine.utils.Constants.LONG
 import com.example.sunshine.utils.Constants.MODE
 import com.example.sunshine.utils.Constants.PATH
 import com.example.sunshine.utils.Constants.Q
@@ -31,6 +33,17 @@ interface WeatherService {
         @Query(API_KEY_QUERY_VALUE) apiKey: String = API_KEY
     ): Observable<WeatherPayload>
 
+    @GET(PATH)
+    fun getWeatherFromLocation(
+        @Query(LAT) lat: Double,
+        @Query(LONG) long: Double,
+        @Query(MODE) mode: String = JSON,
+        @Query(CNT) sortBy: Int = TEN,
+        @Query(UNITS) units: String = IMPERIAL,
+        @Query(API_KEY_QUERY_VALUE) apiKey: String = API_KEY
+    ): Observable<WeatherPayload>
+
+    // Singleton
     companion object {
         var weatherService: WeatherService? = null
         fun getInstance(): WeatherService {

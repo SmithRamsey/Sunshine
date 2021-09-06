@@ -21,12 +21,14 @@ class HomeViewModel : ViewModel() {
     private val homViewModelCoroutine = CoroutineScope(Dispatchers.Default + homeViewModelJob)
     private val _isLoading = MutableLiveData<Boolean>()
     private val _weatherPayload = MutableLiveData<WeatherPayload>()
+    private val _coordinates = MutableLiveData<Pair<Double?, Double?>>()
     val weatherPayload: LiveData<WeatherPayload> = _weatherPayload
     val isLoading: LiveData<Boolean> = _isLoading
+    val coordinates: LiveData<Pair<Double?, Double?>> = _coordinates
 
-    fun getWeather() {
+    fun getWeather(lat: Double? = null, long: Double? = null) {
         homViewModelCoroutine.launch {
-            weatherRepository.getWeatherPayload().subscribeOn(Schedulers.io())
+            weatherRepository.getWeatherPayload(lat, long).subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(object : Observer<WeatherPayload> {
                     override fun onSubscribe(d: Disposable?) {
@@ -50,7 +52,7 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun onDestroy() {
-        homeViewModelJob.cancel()
+    fun setCoordinates(lat: Double?, long: Double?) {
+        _coordinates.postValue(Pair(lat, long))
     }
 }
