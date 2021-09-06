@@ -8,7 +8,7 @@ This will be shown in a list and tapping on a day will expand the cell to show m
 
 
 Setting up the environment with Android Studio 3.0 or greater:
- 1. Make sure JDK 11 is installed.
+ 1. Make sure JDK is installed.
  2. Make sure Android Sdk is installed.
  3. Make sure that $ANDROID_HOME is set.
  4. Make sure Gradle is installed.
