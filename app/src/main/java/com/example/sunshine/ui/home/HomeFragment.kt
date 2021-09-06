@@ -47,14 +47,17 @@ class HomeFragment : Fragment() {
             getDrawable(context, R.drawable.divider)?.let { itemDecoration.setDrawable(it) }
             addItemDecoration(itemDecoration)
         }
+        binding.swipeRefreshLayout.setOnRefreshListener { homeViewModel.getWeather() }
         homeViewModel.weatherPayload.observe(viewLifecycleOwner, { payLoad ->
             binding.listItem = payLoad.list?.firstOrNull()
             binding.weatherItem = payLoad.list?.firstOrNull()?.weather?.firstOrNull()
-            Log.d("testing", "onCreateView: ${payLoad.list?.firstOrNull()?.feels_like?.day}")
             binding.locationText.text = payLoad.city?.name
             payLoad.list?.filterNotNull()?.let { weatherList ->
                 homeFragmentAdapter.weatherList = weatherList
             }
+        })
+        homeViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
+            binding.swipeRefreshLayout.isRefreshing = isLoading
         })
         return root
     }

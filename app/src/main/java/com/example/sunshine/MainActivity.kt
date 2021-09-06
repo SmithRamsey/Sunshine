@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        // Manually setting toolbar characteristics to override setupActionBarWithNavController
+        // which sets toolbar characteristics automatically.
         navController.addOnDestinationChangedListener { _, _, _ ->
             binding.appBarMain.toolbar.setTitleTextAppearance(applicationContext, R.style.Theme_Sunshine_ActionBar)
             binding.appBarMain.toolbar.setNavigationIcon(R.drawable.menu)

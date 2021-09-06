@@ -6,7 +6,6 @@ import com.example.sunshine.utils.Constants.API_KEY_QUERY_VALUE
 import com.example.sunshine.utils.Constants.BASE_URL
 import com.example.sunshine.utils.Constants.CNT
 import com.example.sunshine.utils.Constants.DEFAULT_CITY
-import com.example.sunshine.utils.Constants.FIVE
 import com.example.sunshine.utils.Constants.IMPERIAL
 import com.example.sunshine.utils.Constants.JSON
 import com.example.sunshine.utils.Constants.MODE

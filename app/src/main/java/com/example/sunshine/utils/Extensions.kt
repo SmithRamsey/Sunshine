@@ -66,8 +66,8 @@ fun buildWindString(view: TextView, listItem: ListItem) {
 
 @BindingAdapter("formatDate")
 fun formatDate(view: TextView, dt: Int) {
-    val sdf = SimpleDateFormat("E", Locale.US)
-    val date = Date(dt.toLong()*1000)
+    val sdf = SimpleDateFormat("EEEE", Locale.US)
+    val date = Date(dt.toLong() * 1000)
     val result = sdf.format(date)
     view.text = result
 }

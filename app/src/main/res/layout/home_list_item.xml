@@ -29,6 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/item_day_text"
             loadIcon="@{weatherItem.icon}"
+            android:backgroundTint="@color/dark_blue"
             tools:src="@drawable/weather_cloudy" />
 
         <androidx.appcompat.widget.AppCompatTextView

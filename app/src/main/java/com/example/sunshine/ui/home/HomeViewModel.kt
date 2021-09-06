@@ -20,8 +20,10 @@ class HomeViewModel : ViewModel() {
     private val weatherRepository by lazy { WeatherRepository.getInstance() }
     private val homeViewModelJob = Job()
     private val homViewModelCoroutine = CoroutineScope(Dispatchers.Default + homeViewModelJob)
+    private val _isLoading = MutableLiveData<Boolean>()
     private val _weatherPayload = MutableLiveData<WeatherPayload>()
     val weatherPayload: LiveData<WeatherPayload> = _weatherPayload
+    val isLoading: LiveData<Boolean> = _isLoading
 
     fun getWeather() {
         homViewModelCoroutine.launch {
@@ -29,22 +31,21 @@ class HomeViewModel : ViewModel() {
                 .observeOn(Schedulers.io())
                 .subscribe(object : Observer<WeatherPayload> {
                     override fun onSubscribe(d: Disposable?) {
-
+                        _isLoading.postValue(true)
                     }
 
                     override fun onNext(value: WeatherPayload?) {
                         value?.let {
                             _weatherPayload.postValue(it)
                         }
-                        Log.d("testing", "onNext: $value")
                     }
 
                     override fun onError(e: Throwable?) {
-                        Log.d("testing", "onError: $e")
+                        _isLoading.postValue(false)
                     }
 
                     override fun onComplete() {
-
+                        _isLoading.postValue(false)
                     }
                 })
         }

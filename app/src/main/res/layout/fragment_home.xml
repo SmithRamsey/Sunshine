@@ -14,129 +14,135 @@
             type="com.example.sunshine.model.WeatherItem" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.home.HomeFragment">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/home_top_constraint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/blue_gradient"
-            android:paddingHorizontal="@dimen/horizontal_padding"
-            android:paddingTop="@dimen/medium_margin"
-            android:paddingBottom="@dimen/medium_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            tools:context=".ui.home.HomeFragment">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/location_text"
-                style="@style/title_1"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_top_constraint"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_margin"
-                android:layout_marginBottom="@dimen/extra_small_margin"
-                app:layout_constraintBottom_toTopOf="@id/current_weather_group"
+                android:background="@drawable/blue_gradient"
+                android:paddingHorizontal="@dimen/horizontal_padding"
+                android:paddingTop="@dimen/medium_margin"
+                android:paddingBottom="@dimen/medium_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Atlanta, GA" />
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/current_weather_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/extra_small_margin"
-                android:layout_marginBottom="@dimen/medium_margin"
-                app:layout_constraintBottom_toTopOf="@id/temperature_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/location_text">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/current_weather_icon"
-                    loadIcon="@{weatherItem.icon}"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="@dimen/small_margin"
-                    android:tint="@color/white"
-                    android:backgroundTint="@color/white"
-                    tools:src="@drawable/weather_cloudy" />
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/weather_text"
-                    style="@style/subtitle_1"
+                    android:id="@+id/location_text"
+                    style="@style/title_1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:text="@{weatherItem.main}"
-                    tools:text="Partly Cloudy" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:layout_marginBottom="@dimen/extra_small_margin"
+                    app:layout_constraintBottom_toTopOf="@id/current_weather_group"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Atlanta, GA" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/current_weather_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/extra_small_margin"
+                    android:layout_marginBottom="@dimen/medium_margin"
+                    app:layout_constraintBottom_toTopOf="@id/temperature_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_text">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/current_weather_icon"
+                        loadIcon="@{weatherItem.icon}"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:backgroundTint="@color/white"
+                        android:tint="@color/white"
+                        tools:src="@drawable/weather_cloudy" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/weather_text"
+                        style="@style/subtitle_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/small_margin"
+                        android:text="@{weatherItem.main}"
+                        tools:text="Partly Cloudy" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/temperature_text"
-                style="@style/title_3"
-                roundTemp="@{listItem.temp.day}"
-                android:layout_width="wrap_content"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/temperature_text"
+                    style="@style/title_3"
+                    roundTemp="@{listItem.temp.day}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:layout_marginBottom="@dimen/extra_small_margin"
+                    app:layout_constraintBottom_toTopOf="@id/wind_chill_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/current_weather_group"
+                    tools:text="72°" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/wind_chill_text"
+                    style="@style/body_1"
+                    feelsLikeRoundTemp="@{listItem.feels_like.day}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/extra_small_margin"
+                    android:layout_marginBottom="@dimen/medium_margin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/temperature_text"
+                    tools:text="Feels like 82°" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/ten_day_forecast_text"
+                style="@style/title_2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_margin"
-                android:layout_marginBottom="@dimen/extra_small_margin"
-                app:layout_constraintBottom_toTopOf="@id/wind_chill_text"
+                android:layout_marginTop="@dimen/large_margin"
+                android:paddingHorizontal="@dimen/horizontal_padding"
+                android:text="@string/ten_day_forecast"
+                app:layout_constraintBottom_toTopOf="@id/rv_home"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/current_weather_group"
-                tools:text="72°" />
+                app:layout_constraintTop_toBottomOf="@id/home_top_constraint" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/wind_chill_text"
-                style="@style/body_1"
-                feelsLikeRoundTemp="@{listItem.feels_like.day}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/extra_small_margin"
-                android:layout_marginBottom="@dimen/medium_margin"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingHorizontal="@dimen/horizontal_padding"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/temperature_text"
-                tools:text="Feels like 82°" />
-
+                app:layout_constraintTop_toBottomOf="@id/ten_day_forecast_text"
+                tools:context=".ui.home.HomeFragment"
+                tools:listitem="@layout/home_list_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/ten_day_forecast_text"
-            style="@style/title_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/large_margin"
-            android:paddingHorizontal="@dimen/horizontal_padding"
-            android:text="@string/ten_day_forecast"
-            app:layout_constraintBottom_toTopOf="@id/rv_home"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_top_constraint" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_home"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:paddingHorizontal="@dimen/horizontal_padding"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ten_day_forecast_text"
-            tools:context=".ui.home.HomeFragment"
-            tools:listitem="@layout/home_list_item" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>
 

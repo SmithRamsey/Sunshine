@@ -3,7 +3,7 @@ package com.example.sunshine.utils
 object Constants {
 
     // Integers
-    const val FIVE = 5
+
     const val TEN = 10
 
     // WeatherService.kt constants
