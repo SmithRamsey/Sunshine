@@ -17,7 +17,6 @@ object Constants {
     const val DEFAULT_CITY = "Atlanta"
     const val JSON = "json"
     const val IMPERIAL = "imperial"
-    const val API_KEY = "3aa158b2f14a9f493a8c725f8133d704"
 
     // WeatherService Query Values
     const val LAT = "lat"

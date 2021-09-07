@@ -1,7 +1,7 @@
 package com.example.sunshine.api
 
+import com.example.sunshine.BuildConfig
 import com.example.sunshine.model.WeatherPayload
-import com.example.sunshine.utils.Constants.API_KEY
 import com.example.sunshine.utils.Constants.API_KEY_QUERY_VALUE
 import com.example.sunshine.utils.Constants.BASE_URL
 import com.example.sunshine.utils.Constants.CNT
@@ -30,7 +30,7 @@ interface WeatherService {
         @Query(MODE) mode: String = JSON,
         @Query(CNT) sortBy: Int = TEN,
         @Query(UNITS) units: String = IMPERIAL,
-        @Query(API_KEY_QUERY_VALUE) apiKey: String = API_KEY
+        @Query(API_KEY_QUERY_VALUE) apiKey: String = BuildConfig.API_KEY
     ): Observable<WeatherPayload>
 
     @GET(PATH)
@@ -40,7 +40,7 @@ interface WeatherService {
         @Query(MODE) mode: String = JSON,
         @Query(CNT) sortBy: Int = TEN,
         @Query(UNITS) units: String = IMPERIAL,
-        @Query(API_KEY_QUERY_VALUE) apiKey: String = API_KEY
+        @Query(API_KEY_QUERY_VALUE) apiKey: String = BuildConfig.API_KEY
     ): Observable<WeatherPayload>
 
     // Singleton
