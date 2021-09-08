@@ -9,12 +9,8 @@ interface WeatherRepository {
     // Singleton
     // Wrapping WeatherRepository in an implementation.
     companion object {
-        var weatherRepository: WeatherRepository? = null
-        fun getInstance(): WeatherRepository {
-            if (weatherRepository == null) {
-                weatherRepository = WeatherRepositoryImpl()
-            }
-            return weatherRepository!!
+        val weatherRepository: WeatherRepository by lazy {
+            WeatherRepositoryImpl()
         }
     }
 }

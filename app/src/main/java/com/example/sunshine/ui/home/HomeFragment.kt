@@ -23,8 +23,6 @@ class HomeFragment : Fragment() {
         HomeFragmentAdapter()
     }
     private var _binding: FragmentHomeBinding? = null
-    private var lat: Double? = null
-    private var long: Double? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -44,8 +42,7 @@ class HomeFragment : Fragment() {
             getDrawable(context, R.drawable.divider)?.let { itemDecoration.setDrawable(it) }
             addItemDecoration(itemDecoration)
         }
-        binding.swipeRefreshLayout.setOnRefreshListener { homeViewModel.getWeather(lat, long) }
-        homeViewModel.coordinates.observe(viewLifecycleOwner, coordinateObserver)
+        binding.swipeRefreshLayout.setOnRefreshListener { homeViewModel.getWeather() }
         homeViewModel.weatherPayload.observe(viewLifecycleOwner, weatherPayloadObserver)
         homeViewModel.isLoading.observe(viewLifecycleOwner, isLoadingObserver)
         return root
@@ -53,12 +50,6 @@ class HomeFragment : Fragment() {
 
     private val isLoadingObserver = Observer<Boolean> {
         binding.swipeRefreshLayout.isRefreshing = it
-    }
-
-    private val coordinateObserver = Observer<Pair<Double?, Double?>> {
-        lat = it.first
-        long = it.second
-        homeViewModel.getWeather(lat, long)
     }
 
     private val weatherPayloadObserver = Observer<WeatherPayload> { payLoad ->

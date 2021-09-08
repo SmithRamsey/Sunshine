@@ -9,9 +9,9 @@ class WeatherRepositoryImpl : WeatherRepository {
         long: Double?
     ): Observable<WeatherPayload> {
         return if (lat != null && long != null) {
-            WeatherService.getInstance().getWeatherFromLocation(lat, long)
+            WeatherService.weatherService.getWeatherFromLocation(lat, long)
         } else {
-            WeatherService.getInstance().getWeather()
+            WeatherService.weatherService.getWeather()
         }
     }
 }
