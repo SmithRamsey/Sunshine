@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val itemDecoration = DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
+        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         binding.rvHome.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = homeFragmentAdapter

@@ -3,7 +3,10 @@ package com.example.sunshine.utils
 object Constants {
 
     // Integers
+    const val HALF = 0.5
     const val TEN = 10
+    const val TWENTY_TWO_AND_HALF = 22.5
+    const val THREE_HUNDRED_SIXTY = 360
     const val ONE_THOUSAND = 1000
 
     // Location

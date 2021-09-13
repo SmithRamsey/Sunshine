@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
-    private val weatherRepository by lazy { WeatherRepository.weatherRepository }
+    private val weatherRepository by lazy { WeatherRepository.instance }
     private val _isLoading = MutableLiveData<Boolean>()
     private val _weatherPayload = MutableLiveData<WeatherPayload>()
     val weatherPayload: LiveData<WeatherPayload> = _weatherPayload

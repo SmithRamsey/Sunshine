@@ -9,8 +9,7 @@ interface WeatherRepository {
     // Singleton
     // Wrapping WeatherRepository in an implementation.
     companion object {
-        val weatherRepository: WeatherRepository by lazy {
+        val instance: WeatherRepository =
             WeatherRepositoryImpl()
-        }
     }
 }

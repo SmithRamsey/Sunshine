@@ -45,12 +45,11 @@ interface WeatherService {
 
     // Singleton
     companion object {
-        val weatherService: WeatherService by lazy {
+        val instance: WeatherService =
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build().create(WeatherService::class.java)
-        }
     }
 }

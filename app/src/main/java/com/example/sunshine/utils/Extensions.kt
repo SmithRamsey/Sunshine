@@ -10,7 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.sunshine.R
 import com.example.sunshine.model.ListItem
+import com.example.sunshine.utils.Constants.HALF
 import com.example.sunshine.utils.Constants.ONE_THOUSAND
+import com.example.sunshine.utils.Constants.THREE_HUNDRED_SIXTY
+import com.example.sunshine.utils.Constants.TWENTY_TWO_AND_HALF
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,7 +60,7 @@ fun feelsLikeRoundTemp(view: TextView, temp: Double) {
 
 @BindingAdapter("buildWindString")
 fun buildWindString(view: TextView, listItem: ListItem) {
-    val sector  = ((listItem.deg?.toDouble() ?: 360 / 22.5) + 0.5).toInt()
+    val sector  = ((listItem.deg?.toDouble() ?: THREE_HUNDRED_SIXTY / TWENTY_TWO_AND_HALF) + HALF).toInt()
     val arr = listOf("N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW")
     val direction =  arr[(sector % 16)]
     val wind = view.context.getString(R.string.wind)
